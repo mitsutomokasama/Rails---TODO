@@ -1,0 +1,23 @@
+<h1>タスクの一覧</h1>
+<%= form_for @task do |form| %>
+  <ul>
+    <li><%= form.label :name %><%= form.text_field :name %></li>
+    <li><%= form.label :due_date %><%= form.date_select :due_date %></li>
+    <li><%= form.submit %></li>
+  </ul>
+<% end %>
+
+<%= navigation_links %>
+
+<table class="tasks">
+  <col class="name" />
+  <col class="due_date" />
+  <col class="commands" />
+  <% @tasks.each do |task| %>
+    <%= render 'task', :task => task %>
+  <% end %>
+</table>
+
+<%= will_paginate(@tasks) %>
+
+
